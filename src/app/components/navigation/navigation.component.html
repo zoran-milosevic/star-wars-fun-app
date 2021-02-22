@@ -1,7 +1,7 @@
 <nav class="horizontal">
   <ul>
     <li *ngFor="let item of menuItems$ | async; last as lastElement;" [ngClass]="{ 'float-right': lastElement }">
-      <a href="{{ item.url }}" [ngClass]="{ 'active': item.active }">{{ item.title }}</a>
+      <a [routerLink]="item.url" [ngClass]="{ 'active': item.active }">{{ item.title }}</a>
     </li>
   </ul>
 </nav>

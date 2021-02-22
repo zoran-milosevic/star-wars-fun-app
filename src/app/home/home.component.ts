@@ -20,10 +20,10 @@ export class HomeComponent implements OnInit {
 
   initialize() {
     const items = <INavBarItem[]>[
-      { title: 'Home', url: 'home', active: true },
-      { title: 'Contact', url: 'contact', active: false },
-      { title: 'About', url: 'about', active: false },
-      { title: 'Login', url: 'login', active: false }
+      { title: 'Home', url: '/home', active: true },
+      { title: 'Contact', url: '/contact', active: false },
+      { title: 'About', url: '/about', active: false },
+      { title: 'Login', url: '/login', active: false }
     ];
 
     this.menuItems$ = of(items);
