@@ -1,0 +1,11 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 50px;
+    margin: 30px 0 0 0;
+    overflow: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+}
