@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { INavBarItem } from '../models/navbar.model';
 import { IUser } from '@app/modules/shared/models/user.model';
 
-import { AuthenticationService } from '@app/modules/authentication/providers/authentication.service';
+import { AuthenticationService } from '@app/modules/authentication/providers';
 
 @Injectable({ providedIn: 'root' })
 export class NavBarService {
