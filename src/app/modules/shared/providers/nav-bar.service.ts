@@ -13,22 +13,12 @@ export class NavBarService {
     private currentUser!: IUser;
 
     constructor(private http: HttpClient, private authenticationService: AuthenticationService) {
-        
+
         this.items = new BehaviorSubject<INavBarItem[]>(this.getItems() || []);
     }
 
     public get menuItems(): INavBarItem[] {
         return this.items.value;
-    }
-
-    public setActive(url: string): void {
-        const items = this.getItems();
-
-        items.map(x => {
-            x.url === url ? x.active = true : x.active = false;
-        });
-
-        this.items = new BehaviorSubject<INavBarItem[]>(items);
     }
 
     private getItems(): INavBarItem[] {
@@ -38,8 +28,8 @@ export class NavBarService {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
         const items = <INavBarItem[]>[
-            { title: 'Home', url: '/home', active: false },
-            { title: 'Contact', url: '/contact', active: true },
+            { title: 'Home', url: '/home', active: true },
+            { title: 'Contact', url: '/contact', active: false },
             { title: 'About', url: '/about', active: false }
         ];
 
