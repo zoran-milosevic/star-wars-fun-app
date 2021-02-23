@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { INavBarItem } from 'src/app/modules/shared/models/navbar.model';
+import { INavBarItem } from '@app/modules/shared/models/navbar.model';
 
 @Component({
   selector: 'app-navigation',
@@ -11,9 +11,23 @@ export class NavigationComponent implements OnInit {
 
   @Input() menuItems$!: Observable<INavBarItem[]>;
 
-  constructor() { }
+  menuItems!: INavBarItem[];
 
-  ngOnInit(): void {
+  constructor() {
+
   }
 
+  ngOnInit(): void {
+
+    this.menuItems$.subscribe(res => {
+      if (!!res) {
+        this.menuItems = res;
+      }
+    });
+  }
+
+  setActiveRoute(url: string) {
+
+    this.menuItems.map(x => x.url === url ? x.active = true : x.active = false);
+  }
 }

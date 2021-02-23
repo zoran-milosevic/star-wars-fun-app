@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { INavBarItem } from '../modules/shared/models/navbar.model';
+
+import { INavBarItem } from '@app/modules/shared/models/navbar.model';
+
+import { AuthenticationService } from '@app/modules/authentication/providers';
+import { NavBarService } from '@app/modules/shared/providers';
 
 @Component({
   selector: 'app-root',
@@ -10,22 +14,17 @@ import { INavBarItem } from '../modules/shared/models/navbar.model';
 export class HomeComponent implements OnInit {
 
   menuItems$!: Observable<INavBarItem[]>;
+  loggedInUser: boolean = false;
 
-  constructor() {
-    this.initialize();
+  constructor(private authenticationService: AuthenticationService, private navbarService: NavBarService) {
+
+    this.authenticationService.currentUser.subscribe(x => {
+      this.loggedInUser = Object.keys(x).length !== 0 ? true : false;
+    });
+
+    this.menuItems$ = of(this.navbarService.menuItems);
   }
 
   ngOnInit(): void {
-  }
-
-  initialize() {
-    const items = <INavBarItem[]>[
-      { title: 'Home', url: '/home', active: true },
-      { title: 'Contact', url: '/contact', active: false },
-      { title: 'About', url: '/about', active: false },
-      { title: 'Login', url: '/login', active: false }
-    ];
-
-    this.menuItems$ = of(items);
   }
 }

@@ -1,7 +1,9 @@
-import { LogService } from './log.service';
+import { AuthenticationService } from './authentication.service';
 
 export const PROVIDERS: any[] = [
-    LogService
+    AuthenticationService
 ];
 
-export * from './log.service';
+export {
+    AuthenticationService
+}

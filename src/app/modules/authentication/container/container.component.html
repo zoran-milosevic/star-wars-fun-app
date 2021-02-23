@@ -1,3 +1,25 @@
-<p>authentication container works!</p>
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <h1>Sign in</h1>
+
+        <div class="form-content">
+            <input type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                placeholder="username">
+            <input type="text" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                placeholder="password">
+
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+
+            <br />
+
+            <button class="button">Log in</button>
+
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </div>
+    </form>
+</div>
 
 <router-outlet></router-outlet>

@@ -7,7 +7,7 @@ import { AuthGuard } from '@app/modules/shared/providers';
 
 const routes: Routes = [
     {
-        path: 'home',
+        path: 'about',
         component: ContainerComponent,
         canActivate: [AuthGuard],
         children: [
@@ -24,4 +24,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class MainRoutingModule { }
+export class AboutRoutingModule { }
