@@ -1,12 +1,9 @@
 import { AuthenticationService } from './authentication.service';
-import { AuthGuard } from './auth-guard.service';
 
 export const PROVIDERS: any[] = [
-    AuthenticationService,
-    AuthGuard
+    AuthenticationService
 ];
 
 export {
-    AuthenticationService,
-    AuthGuard
+    AuthenticationService
 }
