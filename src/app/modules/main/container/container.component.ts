@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { NavBarService } from '@app/modules/shared/providers/nav-bar.service';
 
 @Component({
   selector: 'app-container',
@@ -7,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private navbarService: NavBarService) {
+
+    // this.navbarService.setActive(router.url);
+  }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,6 @@
 <nav class="horizontal">
   <ul>
-    <li *ngFor="let item of menuItems$ | async; last as lastElement;" [ngClass]="{ 'float-right': lastElement }">
+    <li *ngFor="let item of menuItems$ | async; last as lastElement;" [ngClass]="{ 'float-right': lastElement }" (click)="setActiveRoute(item.url)">
       <a [routerLink]="item.url" [ngClass]="{ 'active': item.active }">{{ item.title }}</a>
     </li>
   </ul>
