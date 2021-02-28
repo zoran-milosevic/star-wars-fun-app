@@ -1,0 +1,3 @@
+<div class="container">
+    <app-list-item *ngFor="let item of listItems" [item]="item" [routerLink]="['../detail', item.resource, item.id]"></app-list-item>
+</div>

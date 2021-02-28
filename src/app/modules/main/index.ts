@@ -1,9 +1,27 @@
+import { DetailComponent } from './components/detail/detail.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
+import { ListComponent } from './components/list/list.component';
+import { OverviewComponent } from './components/overview/overview.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { ContainerComponent } from './container/container.component';
 
 export const COMPONENTS: any[] = [
-    ContainerComponent
+    ContainerComponent,
+    OverviewComponent,
+    DropdownComponent,
+    ListComponent,
+    ListItemComponent,
+    PaginationComponent,
+    DetailComponent
 ];
 
 export {
-    ContainerComponent
+    ContainerComponent,
+    OverviewComponent,
+    DropdownComponent,
+    ListComponent,
+    ListItemComponent,
+    PaginationComponent,
+    DetailComponent
 }

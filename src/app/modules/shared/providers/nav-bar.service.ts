@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
-import { INavBarItem } from '../models/navbar.model';
+import { INavBarItem } from '@app/modules/shared/models/navbar.model';
 import { IUser } from '@app/modules/shared/models/user.model';
 
 import { AuthenticationService } from '@app/modules/authentication/providers';
@@ -28,7 +28,7 @@ export class NavBarService {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
         const items = <INavBarItem[]>[
-            { title: 'Home', url: '/home', active: true },
+            { title: 'Home', url: '/home/overview', active: true },
             { title: 'Contact', url: '/contact', active: false },
             { title: 'About', url: '/about', active: false }
         ];

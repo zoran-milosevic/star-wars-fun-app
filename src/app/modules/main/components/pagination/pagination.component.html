@@ -1,0 +1,6 @@
+<div class="content">
+    <div class="navigation">
+        <button *ngIf="currentPage > 1" (click)="goToPreviousPage()">Previous</button>
+        <button *ngIf="!lastPage" (click)="goToNextPage()">Next</button>
+    </div>
+</div>
