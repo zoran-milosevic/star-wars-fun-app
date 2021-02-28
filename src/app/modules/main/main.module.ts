@@ -13,7 +13,7 @@ import { COMPONENTS } from './index';
     MainRoutingModule
   ],
   providers: [
-    
+
   ],
   exports: [
     COMPONENTS

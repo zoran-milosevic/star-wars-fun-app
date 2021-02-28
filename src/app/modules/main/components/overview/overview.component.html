@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>Star Wars Resources</h1>
+</div>
+
+<app-dropdown [dropDownItems]="dropDownItems" [selectedType]="currentType" (dropDownChanged)="dropDownChanged($event)">
+</app-dropdown>
+
+<app-list [listItems]="listItems"></app-list>
+
+<app-pagination [currentPage]="currentPage" [lastPage]="lastPage" (pageChanged)="pageChanged($event)"></app-pagination>

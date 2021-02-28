@@ -1,0 +1,8 @@
+<div class="container">
+    <select formControlName="resource" (change)="changeDropDown($event)">
+        <option *ngFor="let res of dropDownItems; let i = index" [value]="dropDownItems[i].key"
+            [selected]="res.selected">
+            {{ res.value | titlecase }}
+        </option>
+    </select>
+</div>

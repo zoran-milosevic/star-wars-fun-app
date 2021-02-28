@@ -6,7 +6,7 @@
         <div class="form-content">
             <input type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
                 placeholder="username">
-            <input type="text" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+            <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                 placeholder="password">
 
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
