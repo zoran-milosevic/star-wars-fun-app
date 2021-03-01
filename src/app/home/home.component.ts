@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
-import { INavBarItem } from '@app/modules/shared/models/navbar.model';
 
 import { AuthenticationService } from '@app/modules/authentication/providers';
 import { NavBarService } from '@app/modules/shared/providers';
+
+import { INavBarItem } from '@app/modules/shared/models/navbar.model';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ import { NavBarService } from '@app/modules/shared/providers';
 })
 export class HomeComponent implements OnInit {
 
-  menuItems$!: Observable<INavBarItem[]>;
+  menuItems: INavBarItem[] = [];
   loggedInUser: boolean = false;
 
   constructor(private authenticationService: AuthenticationService, private navbarService: NavBarService) {
@@ -22,7 +21,7 @@ export class HomeComponent implements OnInit {
       this.loggedInUser = Object.keys(x).length !== 0 ? true : false;
     });
 
-    this.menuItems$ = of(this.navbarService.menuItems);
+    this.navbarService.items.subscribe(x => this.menuItems = x);
   }
 
   ngOnInit(): void {

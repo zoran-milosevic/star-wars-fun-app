@@ -2,6 +2,8 @@
     <h1>Star Wars Resources</h1>
 </div>
 
+<app-search [selectedType]="currentType" (searchForTerm)="updateSearchResult()"></app-search>
+
 <app-dropdown [dropDownItems]="dropDownItems" [selectedType]="currentType" (dropDownChanged)="dropDownChanged($event)">
 </app-dropdown>
 

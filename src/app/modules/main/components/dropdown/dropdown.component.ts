@@ -8,7 +8,7 @@ import { IDropDownItem } from '@app/modules/main/models/drop-down-items.model';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css']
 })
-export class DropdownComponent implements OnInit  {
+export class DropdownComponent implements OnInit {
 
   resourceForm: FormGroup;
 
@@ -25,8 +25,6 @@ export class DropdownComponent implements OnInit  {
     this.resourceForm = this.formBuilder.group({
       resource: undefined
     });
-
-
   }
 
   changeDropDown(event: any) {
@@ -39,7 +37,7 @@ export class DropdownComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    
+
   }
 
 }

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { INavBarItem } from '@app/modules/shared/models/navbar.model';
 
 @Component({
@@ -9,9 +8,7 @@ import { INavBarItem } from '@app/modules/shared/models/navbar.model';
 })
 export class NavigationComponent implements OnInit {
 
-  @Input() menuItems$!: Observable<INavBarItem[]>;
-
-  menuItems!: INavBarItem[];
+  @Input() menuItems!: INavBarItem[];
 
   constructor() {
 
@@ -19,15 +16,9 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.menuItems$.subscribe(res => {
-      if (!!res) {
-        this.menuItems = res;
-      }
-    });
   }
 
   setActiveRoute(url: string) {
-
     this.menuItems.map(x => x.url === url ? x.active = true : x.active = false);
   }
 }

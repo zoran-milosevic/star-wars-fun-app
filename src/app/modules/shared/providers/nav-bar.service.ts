@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 import { INavBarItem } from '@app/modules/shared/models/navbar.model';
@@ -9,23 +8,21 @@ import { AuthenticationService } from '@app/modules/authentication/providers';
 
 @Injectable({ providedIn: 'root' })
 export class NavBarService {
-    private items: BehaviorSubject<INavBarItem[]>;
+    public items: BehaviorSubject<INavBarItem[]> = new BehaviorSubject<INavBarItem[]>([]);
     private currentUser!: IUser;
 
-    constructor(private http: HttpClient, private authenticationService: AuthenticationService) {
+    constructor(private authenticationService: AuthenticationService) {
 
-        this.items = new BehaviorSubject<INavBarItem[]>(this.getItems() || []);
+        this.authenticationService.currentUser.subscribe(x => {
+            this.currentUser = x;
+
+            this.getItems();
+        });
     }
 
-    public get menuItems(): INavBarItem[] {
-        return this.items.value;
-    }
-
-    private getItems(): INavBarItem[] {
+    private getItems(): void {
         const login = <INavBarItem>{ title: 'Login', url: '/login', active: false };
         const logout = <INavBarItem>{ title: 'Logout', url: '/logout', active: false };
-
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
         const items = <INavBarItem[]>[
             { title: 'Home', url: '/home/overview', active: true },
@@ -37,6 +34,6 @@ export class NavBarService {
 
         items.push(item);
 
-        return items;
+        this.items.next(items);
     }
 }

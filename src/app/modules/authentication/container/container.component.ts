@@ -48,7 +48,6 @@ export class ContainerComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
@@ -57,7 +56,6 @@ export class ContainerComponent implements OnInit {
         },
         error => {
           this.error = error;
-          this.loading = false;
         });
   }
 }
