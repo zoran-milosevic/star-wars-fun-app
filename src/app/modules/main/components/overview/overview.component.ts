@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { fromEvent } from 'rxjs';
+import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
 
 import { SwapiService } from '@app/modules/main/providers/swapi.service';
 
 import { IDropDownItem } from '@app/modules/main/models/drop-down-items.model';
 import { ISearchResult } from '@app/modules/main/models/search-result.model';
 import { IListItem } from '@app/modules/main/models/list-item.model';
+
 
 @Component({
   selector: 'app-overview',
@@ -23,14 +26,12 @@ export class OverviewComponent implements OnInit {
   currentPage: number = 1;
   lastPage: boolean = false;
 
-  constructor(private swapi: SwapiService, private route: ActivatedRoute) {
+  constructor(private swapi: SwapiService, private route: ActivatedRoute, private el: ElementRef) {
 
     this.getResources();
   }
 
   getResources(): void {
-    this.loading = true;
-
     this.dropDownItems.push({ key: 0, value: 'All resources' })
 
     this.swapi.getResources()
@@ -59,8 +60,6 @@ export class OverviewComponent implements OnInit {
   }
 
   getResourceByType(selectedType?: number, page: number = 1) {
-    this.loading = true;
-
     let type = '';
 
     if (!!selectedType && selectedType > 0) {
@@ -124,7 +123,25 @@ export class OverviewComponent implements OnInit {
     this.getResourceByType(Number(this.currentType), this.currentPage);
   }
 
+  updateSearchResult() {
+    const type = this.dropDownItems.find(item => item.key === this.currentType)?.value || '';
+
+    const typehead = fromEvent(this.el.nativeElement, 'keyup').pipe(
+      map((e: any) => e.target.value),
+      filter(text => text.length > 2),
+      debounceTime(250),
+      switchMap((query: string) => this.swapi.search(query, type))
+    );
+
+    typehead.subscribe(data => {
+      this.searchResult = <ISearchResult>data;
+
+      this.setListItems();
+    });
+  }
+
   ngOnInit(): void {
+
   }
 
 }

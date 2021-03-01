@@ -4,7 +4,6 @@ import { forkJoin } from 'rxjs';
 
 import { environment } from '@environments/environment';
 
-
 @Injectable({ providedIn: 'root' })
 export class SwapiService {
 
@@ -43,6 +42,12 @@ export class SwapiService {
 
     getResourceDetailsById(id: string, type: string) {
         const queryUrl = `${environment.swapiUrl}/${type}/${id}`;
+
+        return this.http.get(queryUrl);
+    }
+
+    search(term: string, type: string | undefined) {
+        const queryUrl = `${environment.swapiUrl}/${type}/?search=${term}`;
 
         return this.http.get(queryUrl);
     }
